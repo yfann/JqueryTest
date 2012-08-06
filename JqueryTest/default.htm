@@ -8,17 +8,19 @@
     <p>Hellow world!</p>
     <div id="test"></div>
     <input id="run" type="button" value="button" />
+    <img alt="" src="fry.jpg" />
     <div>move</div>
     <script type="text/javascript">
         //        $("p").empty()
         //$("#test").html("hahah")
-        $("#run").click(
-        function () {
-            $("div:not(:animated)").animate({left:"+=20"},1000);
-        }
-        );
-        window.onload = function () { alert("loaded"); }
-        $(document).ready(function () { alert("ready"); });
+//        $("#run").click(
+//        function () {
+//            $("div:not(:animated)").animate({left:"+=20"},1000);
+//        }
+//        );
+//        window.onload = function () { alert("loaded"); }
+        //        $(document).ready(function () { alert("ready"); });
+        $("img").css("border", "5px solid orange");
     </script>
 </body>
 </html>

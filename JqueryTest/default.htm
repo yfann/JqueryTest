@@ -3,17 +3,90 @@
 <head>
     <title></title>
     <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+    <script src="Scripts/float.js" type="text/javascript"></script>
 </head>
 <body>
     <p>
         Hellow world!</p>
-    <div id="test">
+    <div id="test" style="border: solid 1px orange">
+        test
     </div>
     <input id="run" type="button" value="button" />
+    <input id="btnShow" type="button" value="show" />
+    <input id="btnShow1" type="button" value="Right to Left" />
     <img alt="" src="fry.jpg" style="border: 2px solid red;" />
-    <div>
-        move</div>
+    <div id="divpop1" style="top: 0px; left: 0px; position: absolute; background-color: #ff0000;
+        width: 100px; height: 50px">
+        right to left animation
+    </div>
+    <div id="divPop" style="background-color: #f0f0f0; border: solid 1px #000000; position: absolute;
+        display: none; width: 300px; height: 100px;">
+        <div style="text-align: center;">
+            弹出层</div>
+    </div>
     <script type="text/javascript">
+        $("#btnShow1").click(function (event) {
+            $("divpop1").animate({
+                marginLeft: parseInt($("divpop1").css('marginLeft'), 10) == 0 ? $("divpop1").outerWidth() : 0
+            });
+        });
+
+        $(document).ready(function () {
+            //动画速度
+            var speed = 500;
+
+            //绑定事件处理
+            $("#btnShow").click(function (event) {
+                //取消事件冒泡
+                event.stopPropagation();
+                //设置弹出层位置
+                var offset = $(event.target).offset();
+                $("#divPop").css({ top: offset.top + $(event.target).height() + "px", left: offset.left });
+                //动画显示
+                $("#divPop").show(speed);
+
+            });
+            //单击空白区域隐藏弹出层
+            $(document).click(function (event) { $("#divPop").hide(speed) });
+            //单击弹出层则自身隐藏
+            $("#divPop").click(function (event) { $("#divPop").hide(speed) });
+        });
+
+        var jsontest = {};
+        jsontest.name = "yfann";
+        jsontest.age = 12;
+        jsontest.getage = function () { alert(this.age); };
+
+        var json = { name: "yfann", age: 12 };
+
+        $("img").css("visibility", "hidden");
+
+        $("#test").bind("click", function (event) {
+            alert(JSON.stringify(json));
+        });
+
+        $("<div/>").attr({ id: "div_oprationpanel" })
+        .css({
+            border: "solid 1px green",
+            padding: 5
+        }).appendTo($(document.body));
+
+        $("<div/>").attr("id", "div_saveimg")
+        .css({
+            border: "solid 1px orange",
+            width: 30,
+            height: 15
+        }).html("save").appendTo($("#div_oprationpanel"));
+
+        $("#div_oprationpanel").float({ position: "rm" });
+        $("#div_saveimg").bind("click", function (event) { alert("save") });
+        $("#div_saveimg").hover(addBackgroundColor, removeBackgroundColor);
+        function addBackgroundColor(event) {
+            $(this).css("backgroundColor", "orange");
+        }
+        function removeBackgroundColor(event) {
+            $(this).css("backgroundColor", "");
+        }
         //        $("p").empty()
         //$("#test").html("hahah")
         //        $("#run").click(
@@ -24,35 +97,36 @@
         //        window.onload = function () { alert("loaded"); }
         //        $(document).ready(function () { alert("ready"); });
         //        $("img").css("border", "5px solid orange");
-        var imges = new Array();
-        imges.contains = function (arr) {
-            for (var i = 0; i < this.length; i++) {
-                if (this[i] == arr)
-                    return true;
-            }
-            return false;
-        }
 
-        function addborder(event) {
-            $(this).css("border", "5px solid orange");
-        }
-        function removeborder(event) {
-            if (!imges.contains(this)) {
-                $(this).css("border", "");
-            }
-        }
-        $("img").hover(addborder, removeborder);
+        //        var imges = new Array();
+        //        imges.contains = function (arr) {
+        //            for (var i = 0; i < this.length; i++) {
+        //                if (this[i] == arr)
+        //                    return true;
+        //            }
+        //            return false;
+        //        }
 
-        $("img").bind("click", function (event) {
-            if (!imges.contains(this)) {
-                imges.push(this);
-                $(this).css("border", "5px solid orange");
-            }
-            else {
-                imges.splice($.inArray(this, imges), 1);
-                $(this).css("border", "");
-            }
-        });
+        //        function addborder(event) {
+        //            $(this).css("border", "5px solid orange");
+        //        }
+        //        function removeborder(event) {
+        //            if (!imges.contains(this)) {
+        //                $(this).css("border", "");
+        //            }
+        //        }
+        //        $("img").hover(addborder, removeborder);
+
+        //        $("img").bind("click", function (event) {
+        //            if (!imges.contains(this)) {
+        //                imges.push(this);
+        //                $(this).css("border", "5px solid orange");
+        //            }
+        //            else {
+        //                imges.splice($.inArray(this, imges), 1);
+        //                $(this).css("border", "");
+        //            }
+        //        });
     </script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+        <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+    <script src="Scripts/float.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <a href="http://pic002.cnblogs.com/images/2012/429355/2012080820270130.jpg" title="Download" download>test download for chrome</a>
+        <script type="text/javascript">
+            var imgs = [];
+            var images = [];
+            $("img").each(function (index) {
+                imgs.push(this);
+            });
+            $(imgs).each(function (index) {
+                images.push(this.src);
+            });
+
+
+            var images_container = document.getElementById('image_downloader_images_container');
+            if (!images_container) {
+                images_container = document.createElement('div');
+                images_container.id = 'image_downloader_images_container';
+                images_container.style.display = 'none';
+            }
+            document.body.appendChild(images_container);
+
+            for (var i in images) {
+                var anchor = document.createElement('a');
+                anchor.href = images[i];
+                anchor.download = '';
+                images_container.appendChild(anchor);
+                anchor.click();
+            }
+        </script>
+</body>
+</html>

@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.htm" />
-    <Content Include="fry.jpg" />
+    <Content Include="images\fry.jpg" />
+    <Content Include="images\icon.gif" />
+    <Content Include="ImageList.htm" />
     <Content Include="Scripts\float.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />

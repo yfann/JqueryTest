@@ -2,38 +2,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-        <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
     <script src="Scripts/float.js" type="text/javascript"></script>
+    <script src="Scripts/ImageListDebug.js" type="text/javascript"></script>
 </head>
 <body>
-
-    <a href="http://pic002.cnblogs.com/images/2012/429355/2012080820270130.jpg" title="Download" download>test download for chrome</a>
-        <script type="text/javascript">
-            var imgs = [];
-            var images = [];
-            $("img").each(function (index) {
-                imgs.push(this);
-            });
-            $(imgs).each(function (index) {
-                images.push(this.src);
-            });
-
-
-            var images_container = document.getElementById('image_downloader_images_container');
-            if (!images_container) {
-                images_container = document.createElement('div');
-                images_container.id = 'image_downloader_images_container';
-                images_container.style.display = 'none';
+    <div>
+        <div id="msgBox" style="height: 20px">
+        </div>
+        <img src="images/fry.jpg" />
+        <a href="http://pic002.cnblogs.com/images/2012/429355/2012080820270130.jpg" title="Download"
+            download>test download for chrome</a>
+    </div>
+    <script type="text/javascript">
+        function showImgSaveBtn(img) {
+            var btn = $(img).next();
+            if (btn && btn.html() == "save") {
+                btn.show();
             }
-            document.body.appendChild(images_container);
-
-            for (var i in images) {
-                var anchor = document.createElement('a');
-                anchor.href = images[i];
-                anchor.download = '';
-                images_container.appendChild(anchor);
-                anchor.click();
+            else {
+                var offset = $(img).offset();
+                var w = $(img).outerWidth(false);
+                var h = $(img).outerHeight(false);
+                $("<div/>").css({
+                    background: "orange",
+                    width: "40px",
+                    height: "20px",
+                    position: "absolute",
+                    top: offset.top + h - 20 + "px",
+                    left: offset.left + w + "px",
+                    cursor: "pointer",
+                    textAlign: "center"
+                }).html("save").bind("click", function () { download(img.src); }).hover(function (event) {
+                    $(this).show();
+                    $(img).css("border", "5px solid orange");
+                },
+                 function (event) {
+                     $(this).hide();
+                     $(img).css("border", "");
+                 }).insertAfter($(img));
             }
-        </script>
+
+        }
+
+        function hideImgSaveBtn(img) {
+            var btn = $(img).next();
+            if (btn && btn.html() == "save") {
+                btn.hide();
+            }
+        }
+
+        function addborder(event) {
+            $(this).css("border", "5px solid orange");
+            showImgSaveBtn(this);
+        }
+        function removeborder(event) {
+            $(this).css("border", "");
+            hideImgSaveBtn(this);
+        }
+        //$("img").after($("<p/>").html("hello"));
+        //  $("<img/>").attr("src", "images/icon_save.png").insertAfter($("img"));
+        $($("img").hover(addborder, removeborder));
+    </script>
 </body>
 </html>

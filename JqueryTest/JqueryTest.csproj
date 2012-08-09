@@ -51,11 +51,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ArrayTest.htm" />
     <Content Include="default.htm" />
+    <Content Include="DivTest.htm" />
     <Content Include="images\fry.jpg" />
     <Content Include="images\icon.gif" />
     <Content Include="ImageList.htm" />
+    <Content Include="images\icon_save.png" />
     <Content Include="Scripts\float.js" />
+    <Content Include="Scripts\ImageListDebug.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
